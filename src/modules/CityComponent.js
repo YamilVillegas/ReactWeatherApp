@@ -39,6 +39,7 @@ const SearchBox = styled.form`
         border: none;
         outline: none;
         font-weight: bold;
+        cursor: pointer;
     }
 `
 
