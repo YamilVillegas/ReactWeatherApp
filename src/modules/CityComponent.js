@@ -43,17 +43,19 @@ const SearchBox = styled.form`
     }
 `
 
-const CityComponent = () => {
+const CityComponent = (props) => {
+    const {updateCity, fetchWeather}=props; //Destructuring updateCity
     return (
         <>
         <WeatherLogo src="icon/WeatherIcon.png"/>
         <ChooseCityLabel>Find the Weather of your city</ChooseCityLabel>
-        <SearchBox>
-            <input placeholder="City"/>
-            <button >Search</button>
+        <SearchBox onSubmit={fetchWeather}>
+            <input placeholder="City" onChange={(e) => updateCity(e.target.value)} /> 
+            <button type="submit">Search</button>
         </SearchBox>
         </>
     )
-}
+}; // In the input the onChange updates the city using the updateCity() function passing it the new value. 
+// In the button we use type submit and then in SearchBox we add onSubmit so when the user clicks on the button it will fetch the weather using the fetchWeather() function made in app.js.
 
 export default CityComponent;

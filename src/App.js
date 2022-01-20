@@ -1,4 +1,6 @@
+import React, {useState} from "react";
 import styled from "styled-components";
+import axios from "axios";
 import CityComponent from "./modules/CityComponent";
 import WeatherComponent from "./modules/WeatherComponent";
 
@@ -22,13 +24,24 @@ font-weight: bold;
 `
 
 function App() {
+  const [city, updateCity] = useState();
+  const [weather, updateWeather] = useState();
+
+  const fetchWeather = async (e) => {
+    e.preventDefault();
+    const response = 
+      await  axios.get(`api.openweathermap.org/data/2.5/weather?q={city}&appid={API key}`)
+      updateWeather(response.data)
+  }; // Calling the API
   return (
     <Container>
       <AppLabel>React Weather App</AppLabel>
-      <CityComponent/>
-      <WeatherComponent />
+      {city && weather ? (
+        <WeatherComponent weather={weather}/>
+      ) : (
+        <CityComponent updateCity={updateCity} fetchWeather={fetchWeather}/> )}
     </Container>
   );
-}
+} // If the weather is available we will show the WeatherComponent else we will show CityComponent
 
 export default App;
