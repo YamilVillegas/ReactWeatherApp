@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const WeatherInfoIcons = {
+    sunset: '/icon/Sunset.jpg',
+    sunrise: 'icon/Sunrise.png',
+    humidity: 'icon/Humidity.jpg',
+    wind: 'icon/wind.jpg',
+    pressure: 'icon/airpressure.png'
+};
+
 const WeatherCondition = styled.div`
     display: flex;
     flex-direction: row;
@@ -61,12 +69,14 @@ const InfoLabel = styled.span`
     }
 `;
 
-const WeatherInfoComponent = () => {
+const WeatherInfoComponent = (props) => {
+    const {name, value} = props; //destructuring
     return(
         <InfoContainer>
-            <InfoIcon src='icon/WeatherIcon.png'/>
+            <InfoIcon src={WeatherInfoIcons[name]} />
             <InfoLabel>
-                <span>Sunrise</span>
+                {value}
+                <span>{name}</span>
             </InfoLabel>
         </InfoContainer>
     )
@@ -84,10 +94,10 @@ const WeatherComponent = () => {
         <Location>New York, NY</Location>
         <WeatherInfoLabel>Weather Info</WeatherInfoLabel>
         <WeatherInfoContainer>
-            <WeatherInfoComponent/>
-            <WeatherInfoComponent/>
-            <WeatherInfoComponent/>
-            <WeatherInfoComponent/>
+            <WeatherInfoComponent name="sunrise" value=""/>
+            <WeatherInfoComponent name="humidity" value=""/>
+            <WeatherInfoComponent name="wind" value=""/>
+            <WeatherInfoComponent name="pressure" value=""/>
         </WeatherInfoContainer>
         </>
     );
