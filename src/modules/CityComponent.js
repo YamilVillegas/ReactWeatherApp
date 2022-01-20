@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const WeatherLogo = styled.img`
 width: 140px;
@@ -50,7 +50,7 @@ const CityComponent = () => {
         <ChooseCityLabel>Find the Weather of your city</ChooseCityLabel>
         <SearchBox>
             <input placeholder="City"/>
-            <button>Search</button>
+            <button >Search</button>
         </SearchBox>
         </>
     )
